@@ -1,0 +1,57 @@
+{
+	"info": {
+		"_postman_id": "9dfbac50-53fb-48f8-af73-f5c32a8ae0e9",
+		"name": "dmi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/weather/check-temperature?latitude=59.911111&longitude=10.752778&units=imperial",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "7881f5239ea9987d0c31e0ffcee85605",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/weather/check-temperature",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"weather",
+						"check-temperature"
+					],
+					"query": [
+						{
+							"key": "latitude",
+							"value": "39.47",
+							"disabled": true
+						},
+						{
+							"key": "longitude",
+							"value": "-0.376389",
+							"disabled": true
+						},
+						{
+							"key": "units",
+							"value": "imperial",
+							"disabled": true
+						},
+						{
+							"key": "notValid",
+							"value": "askaskas",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
