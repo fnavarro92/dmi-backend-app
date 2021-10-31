@@ -11,7 +11,7 @@ export class OpenWeatherAPI {
 
     public async getWeatherInfoOneCall(openCallParams: OpenCallApiParameters): Promise<OpenCallApiResponse> {
         const url = this.buildExternalApiUrl(openCallParams);
-        console.log(`Calling OneCall API in url: ${url}`);
+        console.log(`Calling OneCall API with url: ${url}`);
         return await axios.get(url).then(res => {
             return res.data;
         }).catch(error => {

@@ -1,3 +1,5 @@
+import { checkDefaultTemperatureValidator, checkTemperatureValidator } from "../models/checkTemperature.validator";
+import { validateSchema } from "../utils";
 import { weatherConfig } from "../config";
 import { CheckTemperatureQueryParams, OpenCallApiParameters, OpenCallApiResponse } from "../models/weather.models";
 import { CheckTemperatureResponse } from "../models/weather.models";
@@ -17,10 +19,15 @@ export class WeatherService {
 
     public async checkWeather(checkWeatherQuery: CheckTemperatureQueryParams, headers: any): Promise<CheckTemperatureResponse> {
         console.log("Executing check weather service");
+
+        const schema = checkWeatherQuery.latitude || checkWeatherQuery.longitude ? checkTemperatureValidator : checkDefaultTemperatureValidator;
+        
+        validateSchema(checkWeatherQuery, schema);
+
         const openCallParams: OpenCallApiParameters = {
             lat: checkWeatherQuery.latitude ? checkWeatherQuery.latitude : weatherConfig.dafaultLatitude,
             long: checkWeatherQuery.longitude ? checkWeatherQuery.longitude : weatherConfig.defaultLongitude,
-            units: checkWeatherQuery.units ? checkWeatherQuery.units : 'metric',
+            units: checkWeatherQuery.units ? checkWeatherQuery.units : weatherConfig.defaultUnits,
             appid: headers['x-api-key']
         }
         return this.openWeatherAPI.getWeatherInfoOneCall(openCallParams).then((res: OpenCallApiResponse) => {

@@ -3,7 +3,7 @@ const server = require('./server');
 const init = async () => {
 	const fastify = await server();
   
-	fastify.listen(3000, (err, address) => {
+	fastify.listen(8080, (err, address) => {
 		if (err) throw err;
 		console.log(`fastify 🚀 server listening on ${address}`);
 	});

@@ -1,3 +1,5 @@
+var createError = require('http-errors')
+
 export const axiosErrorHandler = (error) => {
     if (error.response) {
         // The request was made and the server responded with a status code
@@ -13,3 +15,13 @@ export const axiosErrorHandler = (error) => {
         throw { status: 500, message: error.message || 'An unexpected error ocurred' };
     }
 };
+
+export const validateSchema = (itemToValidate, jsonSchema) => {
+    console.log(`Validating item.`)
+    const Validator = require('jsonschema').Validator;
+    const schemaValidator = new Validator();
+    const validationResult = schemaValidator.validate(itemToValidate, jsonSchema);
+    if (validationResult.errors && validationResult.errors.length > 0) {
+        throw createError(400, { message: validationResult.errors.map(error => error.stack) });
+    }
+}

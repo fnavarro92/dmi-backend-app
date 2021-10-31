@@ -1,7 +1,7 @@
 export interface CheckTemperatureQueryParams {
-    latitude: number,
-    longitude: number,
-    units: string
+    latitude?: string,
+    longitude?: string,
+    units?: string
 }
 
 export interface CheckTemperatureResponse {
@@ -11,8 +11,8 @@ export interface CheckTemperatureResponse {
 }
 
 export interface OpenCallApiParameters {
-    lat: number,
-    long: number,
+    lat: string,
+    long: string,
     appid: string,
     units: string,
     lang?: string,
